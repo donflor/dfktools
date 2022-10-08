@@ -221,9 +221,8 @@ def parse_stat_trait(trait):
 
     stats['statBoost1'] = parse_stat(stats['statBoost1'])
     stats['statBoost2'] = parse_stat(stats['statBoost2'])
-    stats['statsUnknown1'] = parse_stat(stats['statsUnknown1']) # stats.get(stats['statsUnknown1'], None)
-    stats['statsUnknown2'] = parse_stat(stats['statsUnknown2']) # stats.get(stats['statsUnknown2'], None) 
-
+    stats['statsUnknown1'] = parse_ability(stats['statsUnknown1']) # stats.get(stats['statsUnknown1'], None)
+    stats['statsUnknown2'] = parse_ability(stats['statsUnknown2']) # stats.get(stats['statsUnknown2'], None)
     stats['element'] = parse_element(stats['element'])
 
     return stats
