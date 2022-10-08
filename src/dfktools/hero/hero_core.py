@@ -64,7 +64,7 @@ ABI = """
 def block_explorer_link(contract_address, txid):
     if hasattr(contract_address, 'address'):
         contract_address = str(contract_address.address)
-    contract_address = str(contract_address).upper()
+        contract_address = str(contract_address).upper()
     if contract_address == SERENDALE_CONTRACT_ADDRESS.upper():
         return 'https://explorer.harmony.one/tx/' + str(txid)
     elif contract_address == CRYSTALVALE_CONTRACT_ADDRESS.upper():
@@ -145,11 +145,13 @@ def get_hero(contract_address, hero_id, rpc_address, block_identifier="latest"):
     contract_address = Web3.toChecksumAddress(contract_address)
     contract = w3.eth.contract(contract_address, abi=ABI)
     contract_entry = contract.functions.getHero(hero_id).call(block_identifier=block_identifier)
+    contract_entry_owner = contract.functions.ownerOf(hero_id).call(block_identifier=block_identifier)
 
     hero = {}
     tuple_index = 0
 
     hero['id'] = contract_entry[tuple_index]
+    hero['ownerId'] = str(contract_entry_owner)
     tuple_index = tuple_index + 1
 
     # SummoningInfo
