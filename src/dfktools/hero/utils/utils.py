@@ -113,6 +113,166 @@ elements = {
     14: 'dark',
 }
 
+background = {
+    0: "desert",
+    2: "forest",
+    4: "plains",
+    6: "island",
+    8: "swamp",
+    10: "mountains",
+    12: "city",
+    14: "arctic"
+}
+
+head_app = {
+    0: "none",
+    1: "kitsune ears",
+    2: "satyr horns",
+    3: "ram horns",
+    4: "imp horns",
+    5: "cat ears",
+    6: "minotaur horns",
+    7: "faun horns",
+    8: "draconic horns",
+    9: "fae circlet",
+    16: "jagged horns",
+    17: "spindle horns",
+    18: "bear ears",
+    19: "antennae",
+    20: "fallen angel coronet",
+    24: "wood elf ears",
+    25: "snow elf ears",
+    28: "insight jewel",
+}
+
+back_app = {
+    0: "none",
+    1: "monkey tail",
+    2: "cat tail",
+    3: "imp tail",
+    4: "minotaur tail",
+    5: "daisho",
+    6: "kitsune tail",
+    7: "zweihander",
+    8: "skeletal wings",
+    9: "skeletal tail",
+    16: "gryphon wings",
+    17: "draconic wings",
+    18: "butterfly wings",
+    19: "phoenix wings",
+    20: "fallen angel",
+    24: "aura of the inner grove",
+    25: "ancient orbs",
+    28: "cecaelia tentacles",
+}
+
+app_color = { 
+    0: "#c5bfa7",
+    1: "#a88b47",
+    2: "#58381e",
+    3: "#566f7d",
+    4: "#2a386d",
+    5: "#3f2e40",
+    6: "#830e18",
+    7: "#6f3a3c",
+    8: "#cddef0",
+    9: "#df7126",
+    16: "#6b173c",
+    17: "#a0304d",
+    18: "#78547c",
+    19: "#352a51",
+    20: "#147256",
+    24: "#c29d35",
+    25: "#211f1f",
+    28: "#d7d7d7",
+}
+
+hair_style = {
+    "male": {
+        0: "battle hawk",
+        1: "wolf mane",
+        2: "enchanter",
+        3: "wild growth",
+        4: "pixel",
+        5: "sunrise",
+        6: "bouffant",
+        7: "agleam spike",
+        8: "wayfinder",
+        9: "faded topknot",
+        16: "gruff",
+        17: "rogue locs",
+        18: "stone cold",
+        19: "zinra's tail",
+        20: "hedgehog",
+        24: "skegg",
+        25: "shinobi",
+        28: "perfect form",
+    },
+    "female": {
+        0: "windswept",
+        1: "fauna",
+        2: "enchantress",
+        3: "pineapple top",
+        4: "pixie",
+        5: "darkweave plait",
+        6: "dejanira",
+        7: "courtly updo",
+        8: "centaur tail",
+        9: "lamia",
+        16: "vogue locs",
+        17: "twin vine loops",
+        18: "sweeping willow",
+        19: "odango",
+        20: "goddess locks",
+        24: "ethereal waterfall",
+        25: "kunoichi",
+        28: "lunar light odango",
+    }
+}
+
+hair_color = {
+    0: "#ab9159",
+    1: "#af3853",
+    2: "#578761",
+    3: "#068483",
+    4: "#48321e",
+    5: "#66489e",
+    6: "#ca93a7",
+    7: "#62a7e6",
+    8: "#c34b1e",
+    9: "#326988",
+    16: "#d7bc65",
+    17: "#9b68ab",
+    18: "#8d6b3a",
+    19: "#566377",
+    20: "#275435",
+    24: "#880016",
+    25: "#353132",
+    28: "#8f9bb3",
+}
+
+eye_color = {
+    0: "#203997",
+    2: "#896693",
+    4: "#bb3f55",
+    6: "#0d7634",
+    8: "#8d7136",
+    10: "#613d8a",
+    12: "#2494a2",
+    14: "#a41e12",
+}
+
+skin_color = {
+    0: "#c58135",
+    2: "#f1ca9e",
+    4: "#985e1c",
+    6: "#57340c",
+    8: "#e6a861",
+    10: "#7b4a11",
+    12: "#e5ac91",
+    14: "#aa5c38",
+}
+
 
 def cv2sd_cv_hero_id(cv_hero_id):
     return cv_hero_id - CRYSTALEVALE_HERO_OFFSET
@@ -161,6 +321,62 @@ def parse_element(id):
     value = elements.get(id, None)
     if FAIL_ON_NOT_FOUND and value is None:
         raise Exception("Element not found")
+    return value
+
+
+def parse_background(id):
+    value = background.get(id, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Background not found")
+    return value
+
+
+def parse_head_app(id):
+    value = head_app.get(id, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Head Appendage not found")
+    return value
+
+
+def parse_back_app(id):
+    value = back_app.get(id, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Back Appendage not found")
+    return value
+
+
+def parse_app_color(id):
+    value = app_color.get(id, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Appendage color not found")
+    return value
+
+
+def parse_hair_style(id, gender):
+    value = hair_style[gender].get(id, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Hair style not found")
+    return value
+
+
+def parse_hair_color(id):
+    value = hair_color.get(id, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Hair color not found")
+    return value
+
+
+def parse_eye_color(id):
+    value = eye_color.get(id, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Eye color not found")
+    return value
+
+
+def parse_skin_color(id):
+    value = skin_color.get(id, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Skin color not found")
     return value
 
 
@@ -241,6 +457,21 @@ def parse_visual_genes(genes):
         visual_genes[stat_trait] = value_num
 
     visual_genes['gender'] = 'male' if visual_genes['gender'] == 1 else 'female'
+    
+    visual_genes['background'] = parse_background(visual_genes['background'])
+    visual_genes['hairStyle'] = parse_hair_style(visual_genes['hairStyle'], visual_genes['gender'])
+    visual_genes['headAppendage'] = parse_head_app(visual_genes['headAppendage'])
+    visual_genes['backAppendage'] = parse_back_app(visual_genes['backAppendage'])
+    
+    visual_genes['hairColor'] = parse_hair_color(visual_genes['hairColor'])
+    visual_genes['appendageColor'] = parse_app_color(visual_genes['appendageColor'])
+    visual_genes['backAppendageColor'] = parse_app_color(visual_genes['backAppendageColor'])
+    visual_genes['eyeColor'] = parse_eye_color(visual_genes['eyeColor'])
+    visual_genes['skinColor'] = parse_skin_color(visual_genes['skinColor'])
+    
+    visual_genes['visualUnknown1'] = parse_ability(visual_genes['visualUnknown1'])
+    visual_genes['visualUnknown2'] = parse_ability(visual_genes['visualUnknown2'])
+    
     return visual_genes
 
 
