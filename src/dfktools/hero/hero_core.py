@@ -145,13 +145,11 @@ def get_hero(contract_address, hero_id, rpc_address, block_identifier="latest"):
     contract_address = Web3.toChecksumAddress(contract_address)
     contract = w3.eth.contract(contract_address, abi=ABI)
     contract_entry = contract.functions.getHero(hero_id).call(block_identifier=block_identifier)
-    contract_entry_owner = contract.functions.ownerOf(hero_id).call(block_identifier=block_identifier)
 
     hero = {}
     tuple_index = 0
 
     hero['id'] = contract_entry[tuple_index]
-    hero['ownerId'] = str(contract_entry_owner)
     tuple_index = tuple_index + 1
 
     # SummoningInfo
