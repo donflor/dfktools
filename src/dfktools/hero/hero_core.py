@@ -1,6 +1,6 @@
 import copy
 from web3 import Web3
-from .utils import utils as hero_utils
+from .utils import utils as hero_utils, names as hero_names
 
 SERENDALE_CONTRACT_ADDRESS = '0x5F753dcDf9b1AD9AabC1346614D1f4746fd6Ce5C'
 CRYSTALVALE_CONTRACT_ADDRESS = '0xEb9B61B145D6489Be575D3603F4a704810e143dF'
@@ -265,7 +265,7 @@ def get_hero(contract_address, hero_id, rpc_address, block_identifier="latest"):
     return hero
 
 
-def human_readable_hero(raw_hero, hero_male_first_names=None, hero_female_first_names=None, hero_last_names=None):
+def human_readable_hero(raw_hero):
     readable_hero = copy.deepcopy(raw_hero)
 
     readable_hero['info']['rarity'] = hero_utils.parse_rarity(readable_hero['info']['rarity'])
@@ -279,14 +279,7 @@ def human_readable_hero(raw_hero, hero_male_first_names=None, hero_female_first_
     readable_hero['info']['statGenes'] = hero_utils.parse_stat_genes(readable_hero['info']['statGenes'])
 
     # names
-    if readable_hero['info']['visualGenes']['gender'] == 'male':
-        if hero_male_first_names is not None:
-            readable_hero['info']['firstName'] = hero_male_first_names[readable_hero['info']['firstName']]
-    else:
-        if hero_female_first_names is not None:
-            readable_hero['info']['firstName'] = hero_female_first_names[readable_hero['info']['firstName']]
-
-    if hero_last_names is not None:
-        readable_hero['info']['lastName'] = hero_last_names[readable_hero['info']['lastName']]
+    readable_hero['info']['firstName'] = hero_names.parse_first_name(readable_hero['info']['firstName'], readable_hero['info']['visualGenes']['gender'])
+    readable_hero['info']['lastName'] = hero_names.parse_last_name(readable_hero['info']['lastName'])
 
     return readable_hero

@@ -23,5 +23,5 @@ class Hero:
         return hero_core.get_hero(self.contract_address, hero_id, self.rpc_address, block_identifier)
 
     @staticmethod
-    def human_readable_hero(raw_hero, hero_male_first_names=None, hero_female_first_names=None, hero_last_names=None):
-        return hero_core.human_readable_hero(raw_hero, hero_male_first_names, hero_female_first_names, hero_last_names)
+    def human_readable_hero(raw_hero):
+        return hero_core.human_readable_hero(raw_hero)
