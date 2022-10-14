@@ -2,7 +2,10 @@ FAIL_ON_NOT_FOUND = False
 
 egg_types = {
     0: "blue",
-    1: "grey"
+    1: "grey",
+    2: "green",
+    3: "yellow",
+    4: "golden",
 }
 
 egg_rarity = {
@@ -13,7 +16,6 @@ egg_rarity = {
     4: "mythic",
 }
 
-
 egg_elements = {
     0: 'fire',
     1: 'water',
@@ -23,6 +25,26 @@ egg_elements = {
     5: 'ice',
     6: 'light',
     7: 'dark',
+}
+
+pet_background = {
+    0: "stillwood meadow",
+    1: "forest trail",
+    2: "swamp of eoxis",
+    3: "vithraven outskirts",
+    4: "path of fire",
+    5: "reyalin mountain pass",
+    6: "adelyn side street",
+    7: "bloater falls",
+    8: "haywood farmstead",
+    9: "inner grove",
+    10: "vuhlmira ruins"
+}
+
+bonus_rarity = {
+    1: "common",
+    80: "rare",
+    160: "mythic"
 }
 
 
@@ -44,6 +66,20 @@ def parse_egg_element(element):
     value = egg_elements.get(element, None)
     if FAIL_ON_NOT_FOUND and value is None:
         raise Exception("Egg element not found")
+    return value
+
+
+def parse_pet_background(background):
+    value = pet_background.get(background, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Background not found")
+    return value
+
+
+def parse_bonus_rarity(rarity):
+    value = bonus_rarity.get(rarity, None)
+    if FAIL_ON_NOT_FOUND and value is None:
+        raise Exception("Bonus rarity not found")
     return value
 
 
@@ -70,17 +106,21 @@ def human_readable_pet(raw_pet):
     i = i + 1
     pet['bonusCount'] = raw_pet[i]
     i = i + 1
-    pet['profBonus'] = raw_pet[i]
+    pet['profBonus'] = parse_bonus_rarity(raw_pet[i])
     i = i + 1
     pet['profBonusScalar'] = raw_pet[i]
     i = i + 1
-    pet['craftBonus'] = raw_pet[i]
+    pet['craftBonus'] = parse_bonus_rarity(raw_pet[i])
+    i = i + 1
+    pet['craftBonusScalar'] = raw_pet[i]
+    i = i + 1
+    pet['combatBonus'] = parse_bonus_rarity(raw_pet[i])
     i = i + 1
     pet['combatBonusScalar'] = raw_pet[i]
     i = i + 1
     pet['appearance'] = raw_pet[i]
     i = i + 1
-    pet['background'] = raw_pet[i]
+    pet['background'] = parse_pet_background(raw_pet[i])
     i = i + 1
     pet['shiny'] = raw_pet[i]
     i = i + 1
@@ -90,8 +130,5 @@ def human_readable_pet(raw_pet):
     i = i + 1
     pet['equippedTo'] = raw_pet[i]
     i = i + 1
-
-
-
 
     return pet
