@@ -86,7 +86,7 @@ def human_readable_pet(raw_pet):
     i = i + 1
     pet['hungryAt'] = raw_pet[i]
     i = i + 1
-    pet['equippableAt   '] = raw_pet[i]
+    pet['equippableAt'] = raw_pet[i]
     i = i + 1
     pet['equippedTo'] = raw_pet[i]
     i = i + 1
