@@ -1,6 +1,6 @@
 from web3 import Web3
 
-CONTRACT_ADDRESS = "0xD5f5bE1037e457727e011ADE9Ca54d21c21a3F8A"
+CONTRACT_ADDRESS = "0x07520d5b2a7bf2DD0d48Bf08311Ac598F9ab4D4A"
 
 ABI = '''
 	[
@@ -59,7 +59,7 @@ ABI = '''
 
 
 def block_explorer_link(txid):
-	return 'https://explorer.harmony.one/tx/' + str(txid)
+	return 'https://scope.klaytn.com/tx/' + str(txid)
 
 
 def get_account_lands(account, rpc_address):
@@ -139,7 +139,6 @@ def claim(landId, private_key, nonce, gas_price_gwei, tx_timeout_seconds, rpc_ad
 	ret = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
 	logger.debug("Transaction successfully sent !")
 	logger.info("Waiting for transaction " + block_explorer_link(signed_tx.hash.hex()) + " to be mined")
-	tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds,
-													 poll_latency=2)
+	tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds, poll_latency=2)
 	logger.info("Transaction mined !")
 	logger.info(str(tx_receipt))

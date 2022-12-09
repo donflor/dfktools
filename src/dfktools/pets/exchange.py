@@ -2,6 +2,7 @@ from web3 import Web3
 
 SERENDALE_CONTRACT_ADDRESS = '0xeaF833A0Ae97897f6F69a728C9c17916296cecCA'
 CRYSTALVALE_CONTRACT_ADDRESS = '0x50142D9e3FA508C424B3ef37BD195b4086CC3DCA'
+SERENDALE2_CONTRACT_ADDRESS = '0xe5D563F7e4144955FCFa8b90da45825426a05bD4'
 
 ABI = '''
     [
@@ -15,7 +16,7 @@ ABI = '''
         {"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},
         {"inputs":[],"name":"DEFAULT_ADMIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},
         {"inputs":[],"name":"MODERATOR_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},
-         {"inputs":[{"internalType":"uint256","name":"_exchangeId","type":"uint256"}],"name":"completeExchange","outputs":[],"stateMutability":"nonpayable","type":"function"},
+        {"inputs":[{"internalType":"uint256","name":"_exchangeId","type":"uint256"}],"name":"completeExchange","outputs":[],"stateMutability":"nonpayable","type":"function"},
         {"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"eggs","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
         {"inputs":[{"internalType":"uint256","name":"_exchangeId","type":"uint256"}],"name":"getPetExchange","outputs":[{"components":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"petId1","type":"uint256"},{"internalType":"uint256","name":"petId2","type":"uint256"},{"internalType":"uint256","name":"seedblock","type":"uint256"},{"internalType":"uint256","name":"finishTime","type":"uint256"},{"internalType":"enum PetExchangeStatus","name":"status","type":"uint8"}],"internalType":"struct PetExchangeData","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},
         {"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleAdmin","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},
@@ -48,6 +49,8 @@ def block_explorer_link(contract_address, txid):
         return 'https://explorer.harmony.one/tx/' + str(txid)
     elif contract_address == CRYSTALVALE_CONTRACT_ADDRESS.upper():
         return 'https://subnets.avax.network/defi-kingdoms/dfk-chain/explorer/tx/' + str(txid)
+    elif contract_address == SERENDALE2_CONTRACT_ADDRESS.upper():
+        return 'https://scope.klaytn.com/tx/' + str(txid)
     else:
         return str(txid)
 
@@ -103,8 +106,7 @@ def start_exchange(contract_address, pet_id_1, pet_id_2, private_key, nonce, gas
     logger.debug("Transaction successfully sent !")
     logger.info("Waiting for transaction " + block_explorer_link(contract_address, signed_tx.hash.hex()) + " to be mined")
 
-    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds,
-                                                     poll_latency=2)
+    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds, poll_latency=2)
     logger.info("Transaction mined !")
 
     return tx_receipt
@@ -134,8 +136,7 @@ def complete_exchange(contract_address, exchange_id, private_key, nonce, gas_pri
     logger.debug("Transaction successfully sent !")
     logger.info("Waiting for transaction " + block_explorer_link(contract_address, signed_tx.hash.hex()) + " to be mined")
 
-    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds,
-                                                     poll_latency=2)
+    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds, poll_latency=2)
     logger.info("Transaction mined !")
 
     return tx_receipt

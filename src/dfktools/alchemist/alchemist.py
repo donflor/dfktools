@@ -2,6 +2,7 @@ from web3 import Web3
 
 SERENDALE_CONTRACT_ADDRESS = "0x87cba8f998f902f2fff990effa1e261f35932e57"
 CRYSTALVALE_CONTRACT_ADDRESS = "0x2542e1Ce063FED3b5Aa81936c5a8f6Eeccaa6B4A"
+SERENDALE2_CONTRACT_ADDRESS = "0x696BECc6ddD5589a9a3Bb93fAc3A53D26b7cb819"
 
 ABI = '''
 	[
@@ -43,6 +44,8 @@ def block_explorer_link(contract_address, txid):
 		return 'https://explorer.harmony.one/tx/' + str(txid)
 	elif contract_address == CRYSTALVALE_CONTRACT_ADDRESS.upper():
 		return 'https://subnets.avax.network/defi-kingdoms/dfk-chain/explorer/tx/' + str(txid)
+	elif contract_address == SERENDALE2_CONTRACT_ADDRESS.upper():
+		return 'https://scope.klaytn.com/tx/' + str(txid)
 	else:
 		return str(txid)
 
@@ -71,8 +74,7 @@ def create_potion(contract_address, potion_address, quantity, private_key, nonce
 	logger.info(
 		"Waiting for transaction " + block_explorer_link(contract_address, signed_tx.hash.hex()) + " to be mined")
 
-	tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds,
-													 poll_latency=2)
+	tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds, poll_latency=2)
 	logger.info("Transaction mined !")
 
 	return tx_receipt

@@ -6,6 +6,7 @@ FAIL_ON_NOT_FOUND = False
 ALPHABET = '123456789abcdefghijkmnopqrstuvwx'
 
 CRYSTALEVALE_HERO_OFFSET = 1_000_000_000_000
+SERENDALE2_HERO_OFFSET = 2_000_000_000_000
 
 rarity = {
     0: "common",

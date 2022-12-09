@@ -2,6 +2,7 @@ from web3 import Web3
 
 SERENDALE_CONTRACT_ADDRESS = '0x576C260513204392F0eC0bc865450872025CB1cA'
 CRYSTALVALE_CONTRACT_ADDRESS = '0x564D03ccF4A9634D97100Ec18d7770A3C4E45541'
+SERENDALE2_CONTRACT_ADDRESS = '0x4aBb1cDe7a0C55850495E80E1806993b1B92F742'
 
 ABI = '''
     [
@@ -53,6 +54,8 @@ def block_explorer_link(contract_address, txid):
         return 'https://explorer.harmony.one/tx/' + str(txid)
     elif contract_address == CRYSTALVALE_CONTRACT_ADDRESS.upper():
         return 'https://subnets.avax.network/defi-kingdoms/dfk-chain/explorer/tx/' + str(txid)
+    elif contract_address == SERENDALE2_CONTRACT_ADDRESS.upper():
+        return 'https://scope.klaytn.com/tx/' + str(txid)
     else:
         return str(txid)
 
@@ -145,8 +148,7 @@ def incubate_egg(contract_address, egg_type, tier, private_key, nonce, gas_price
     logger.debug("Transaction successfully sent !")
     logger.info("Waiting for transaction " + block_explorer_link(contract_address, signed_tx.hash.hex()) + " to be mined")
 
-    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds,
-                                                     poll_latency=2)
+    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds, poll_latency=2)
     logger.info("Transaction mined !")
 
     return tx_receipt
@@ -175,8 +177,7 @@ def crack(contract_address, egg_id, private_key, nonce, gas_price_gwei, tx_timeo
     logger.debug("Transaction successfully sent !")
     logger.info("Waiting for transaction " + block_explorer_link(contract_address, signed_tx.hash.hex()) + " to be mined")
 
-    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds,
-                                                     poll_latency=2)
+    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds, poll_latency=2)
     logger.info("Transaction mined !")
 
     return tx_receipt
