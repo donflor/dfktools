@@ -147,10 +147,10 @@ head_app = {
     18: "bear ears",
     19: "antennae",
     20: "fallen angel coronet",
-    21: "???",
+    21: "power horn",
     24: "wood elf ears",
     25: "snow elf ears",
-    26: "???",
+    26: "cranial wings",
     28: "insight jewel",
 }
 
@@ -172,10 +172,10 @@ back_app = {
     18: "butterfly wings",
     19: "phoenix wings",
     20: "fallen angel",
-    21: "???",
+    21: "crystal wings",
     24: "aura of the inner grove",
     25: "ancient orbs",
-    26: "???",
+    26: "arachnid legs",
     28: "cecaelia tentacles",
 }
 
@@ -200,7 +200,7 @@ app_color = {
     21: "#cf7794",
     24: "#c29d35",
     25: "#211f1f",
-    26: "???",
+    26: "#77b5cf",
     28: "#d7d7d7",
 }
 
@@ -226,7 +226,7 @@ hair_style = {
         21: "delinquent",
         24: "skegg",
         25: "shinobi",
-        26: "???",
+        26: "sanjo",
         28: "perfect form",
     },
     "female": {
@@ -247,7 +247,7 @@ hair_style = {
         18: "sweeping willow",
         19: "odango",
         20: "goddess locks",
-        21: "???",
+        21: "lioness",
         24: "ethereal waterfall",
         25: "kunoichi",
         26: "???",
@@ -273,10 +273,10 @@ hair_color = {
     18: "#8d6b3a",
     19: "#566377",
     20: "#275435",
-    21: "???",
+    21: "#77b23c",
     24: "#880016",
     25: "#353132",
-    26: "???",
+    26: "#dbfbf5",
     28: "#8f9bb3",
 }
 
