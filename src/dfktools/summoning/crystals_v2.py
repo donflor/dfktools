@@ -2,6 +2,7 @@ from web3 import Web3
 
 SERENDALE_CONTRACT_ADDRESS = '0xf4d3ae202c9ae516f7eb1db5aff19bf699a5e355'
 CRYSTALVALE_CONTRACT_ADDRESS = '0x68f6C64786cfCb35108986041D1009c9d27bde22'
+SERENDALE2_CONTRACT_ADDRESS = '0x13cE9c99E8E2fcDe1632adA7B69b2eCf5BE8ED45'
 
 ABI = """
     [
@@ -81,6 +82,8 @@ def block_explorer_link(contract_address, txid):
         return 'https://explorer.harmony.one/tx/' + str(txid)
     elif contract_address == CRYSTALVALE_CONTRACT_ADDRESS.upper():
         return 'https://subnets.avax.network/defi-kingdoms/dfk-chain/explorer/tx/' + str(txid)
+    elif contract_address == SERENDALE2_CONTRACT_ADDRESS.upper():
+        return 'https://scope.klaytn.com/tx/' + str(txid)
     else:
         return str(txid)
 
@@ -120,8 +123,7 @@ def summon_crystal(contract_address, summoner_id, assistant_id, summoner_tears, 
         logger.debug("Transaction successfully sent !")
         logger.info(
             "Waiting for transaction " + block_explorer_link(contract_address, signed_tx.hash.hex()) + " to be mined")
-    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds,
-                                                     poll_latency=2)
+    tx_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash=signed_tx.hash, timeout=tx_timeout_seconds, poll_latency=2)
     if logger is not None:
         logger.info("Transaction mined !")
         logger.info(str(tx_receipt))

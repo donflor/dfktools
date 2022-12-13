@@ -27,13 +27,17 @@ _class = {
     7: "pirate",
     8: "berserker",
     9: "seer",
+    10: "legionnaire",
+    11: "scholar",
     16: "paladin",
     17: "darkknight",
     18: "summoner",
     19: "ninja",
     20: "shapeshifter",
+    21: "bard",
     24: "dragoon",
     25: "sage",
+    26: "spellbow",
     28: "dreadknight"
 }
 
@@ -136,13 +140,17 @@ head_app = {
     7: "faun horns",
     8: "draconic horns",
     9: "fae circlet",
+    10: "ragfly antennae",
+    11: "royal crown",
     16: "jagged horns",
     17: "spindle horns",
     18: "bear ears",
     19: "antennae",
     20: "fallen angel coronet",
+    21: "???",
     24: "wood elf ears",
     25: "snow elf ears",
+    26: "???",
     28: "insight jewel",
 }
 
@@ -157,13 +165,17 @@ back_app = {
     7: "zweihänder",
     8: "skeletal wings",
     9: "skeletal tail",
+    10: "afflicted spikes",
+    11: "travelers pack",
     16: "gryphon wings",
     17: "draconic wings",
     18: "butterfly wings",
     19: "phoenix wings",
     20: "fallen angel",
+    21: "???",
     24: "aura of the inner grove",
     25: "ancient orbs",
+    26: "???",
     28: "cecaelia tentacles",
 }
 
@@ -178,13 +190,17 @@ app_color = {
     7: "#6f3a3c",
     8: "#cddef0",
     9: "#df7126",
+    10: "#835138",
+    11: "#86a637",
     16: "#6b173c",
     17: "#a0304d",
     18: "#78547c",
     19: "#352a51",
     20: "#147256",
+    21: "#cf7794",
     24: "#c29d35",
     25: "#211f1f",
+    26: "???",
     28: "#d7d7d7",
 }
 
@@ -200,13 +216,17 @@ hair_style = {
         7: "agleam spike",
         8: "wayfinder",
         9: "faded topknot",
+        10: "side shave",
+        11: "ronin",
         16: "gruff",
         17: "rogue locs",
         18: "stone cold",
         19: "zinra's tail",
         20: "hedgehog",
+        21: "delinquent",
         24: "skegg",
         25: "shinobi",
+        26: "???",
         28: "perfect form",
     },
     "female": {
@@ -220,13 +240,17 @@ hair_style = {
         7: "courtly updo",
         8: "centaur tail",
         9: "lamia",
+        10: "casual ponytail",
+        11: "wild ponytail",
         16: "vogue locs",
         17: "twin vine loops",
         18: "sweeping willow",
         19: "odango",
         20: "goddess locks",
+        21: "???",
         24: "ethereal waterfall",
         25: "kunoichi",
+        26: "???",
         28: "lunar light odango",
     }
 }
@@ -242,13 +266,17 @@ hair_color = {
     7: "#62a7e6",
     8: "#c34b1e",
     9: "#326988",
+    10: "#513f4f",
+    11: "#d48b41",
     16: "#d7bc65",
     17: "#9b68ab",
     18: "#8d6b3a",
     19: "#566377",
     20: "#275435",
+    21: "???",
     24: "#880016",
     25: "#353132",
+    26: "???",
     28: "#8f9bb3",
 }
 
@@ -281,6 +309,14 @@ def cv2sd_cv_hero_id(cv_hero_id):
 
 def sd2cv_cv_hero_id(cv_hero_id):
     return cv_hero_id + CRYSTALEVALE_HERO_OFFSET
+
+
+def sd22sd_sd2_hero_id(sd2_hero_id):
+    return sd2_hero_id - SERENDALE2_HERO_OFFSET
+
+
+def sd2sd2_sd2_hero_id(sd2_hero_id):
+    return sd2_hero_id + SERENDALE2_HERO_OFFSET
 
 
 def parse_rarity(id):
