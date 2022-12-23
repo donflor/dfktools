@@ -83,7 +83,7 @@ def get_account_lands(real_contract, account, rpc_address):
 def get_land(real_contract, land_id, rpc_address):
 	w3 = Web3(Web3.HTTPProvider(rpc_address))
 
-	contract_address = Web3.toChecksumAddress(CONTRACT_ADDRESS)
+	contract_address = Web3.toChecksumAddress(real_contract)
 	contract = w3.eth.contract(contract_address, abi=ABI)
 
 	return contract.functions.getLand(land_id).call()
